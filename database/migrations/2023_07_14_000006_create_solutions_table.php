@@ -1,0 +1,21 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSolutionsTable extends Migration
+{
+    public function up()
+    {
+        Schema::create('solutions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name_pt');
+            $table->string('name_en');
+            $table->longText('description_pt')->nullable();
+            $table->longText('description_en')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+}
