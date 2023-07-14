@@ -25,6 +25,10 @@ class UpdateManufacturerRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'text_pt' => [
+                'string',
+                'nullable',
+            ],
             'text_en' => [
                 'string',
                 'nullable',

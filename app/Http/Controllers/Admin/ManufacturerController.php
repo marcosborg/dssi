@@ -54,9 +54,6 @@ class ManufacturerController extends Controller
             $table->editColumn('url', function ($row) {
                 return $row->url ? $row->url : '';
             });
-            $table->editColumn('text_en', function ($row) {
-                return $row->text_en ? $row->text_en : '';
-            });
             $table->editColumn('logo', function ($row) {
                 if ($photo = $row->logo) {
                     return sprintf(

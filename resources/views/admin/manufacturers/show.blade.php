@@ -54,7 +54,7 @@
                                         {{ trans('cruds.manufacturer.fields.text_en') }}
                                     </th>
                                     <td>
-                                        {{ $manufacturer->text_en }}
+                                        {!! $manufacturer->text_en !!}
                                     </td>
                                 </tr>
                                 <tr>

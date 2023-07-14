@@ -37,9 +37,6 @@
                                     {{ trans('cruds.manufacturer.fields.url') }}
                                 </th>
                                 <th>
-                                    {{ trans('cruds.manufacturer.fields.text_en') }}
-                                </th>
-                                <th>
                                     {{ trans('cruds.manufacturer.fields.logo') }}
                                 </th>
                                 <th>
@@ -104,7 +101,6 @@
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'url', name: 'url' },
-{ data: 'text_en', name: 'text_en' },
 { data: 'logo', name: 'logo', sortable: false, searchable: false },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

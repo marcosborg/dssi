@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group {{ $errors->has('text_en') ? 'has-error' : '' }}">
                             <label for="text_en">{{ trans('cruds.manufacturer.fields.text_en') }}</label>
-                            <input class="form-control" type="text" name="text_en" id="text_en" value="{{ old('text_en', $manufacturer->text_en) }}">
+                            <textarea class="form-control ckeditor" name="text_en" id="text_en">{!! old('text_en', $manufacturer->text_en) !!}</textarea>
                             @if($errors->has('text_en'))
                                 <span class="help-block" role="alert">{{ $errors->first('text_en') }}</span>
                             @endif
