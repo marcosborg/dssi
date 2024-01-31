@@ -25,7 +25,7 @@ class UpdateUbiquitiRequest extends FormRequest
                 'string',
                 'nullable',
             ],
-            'product_number' => [
+            'part_number' => [
                 'string',
                 'nullable',
             ],

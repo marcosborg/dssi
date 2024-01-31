@@ -44,7 +44,7 @@
                         {{ trans('cruds.kSevenSecurity.fields.to') }}
                     </th>
                     <th>
-                        {{ trans('cruds.kSevenSecurity.fields.product_number') }}
+                        {{ trans('cruds.kSevenSecurity.fields.part_number') }}
                     </th>
                     <th>
                         {{ trans('cruds.kSevenSecurity.fields.description') }}
@@ -182,7 +182,7 @@
 { data: 'term', name: 'term' },
 { data: 'from', name: 'from' },
 { data: 'to', name: 'to' },
-{ data: 'product_number', name: 'product_number' },
+{ data: 'part_number', name: 'part_number' },
 { data: 'description', name: 'description' },
 { data: 'partner_eur', name: 'partner_eur' },
 { data: 'pvp_eur', name: 'pvp_eur' },

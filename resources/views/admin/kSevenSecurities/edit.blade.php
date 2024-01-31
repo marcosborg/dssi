@@ -65,14 +65,14 @@
                 <span class="help-block">{{ trans('cruds.kSevenSecurity.fields.to_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="product_number">{{ trans('cruds.kSevenSecurity.fields.product_number') }}</label>
-                <input class="form-control {{ $errors->has('product_number') ? 'is-invalid' : '' }}" type="text" name="product_number" id="product_number" value="{{ old('product_number', $kSevenSecurity->product_number) }}">
-                @if($errors->has('product_number'))
+                <label for="part_number">{{ trans('cruds.kSevenSecurity.fields.part_number') }}</label>
+                <input class="form-control {{ $errors->has('part_number') ? 'is-invalid' : '' }}" type="text" name="part_number" id="part_number" value="{{ old('part_number', $kSevenSecurity->part_number) }}">
+                @if($errors->has('part_number'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('product_number') }}
+                        {{ $errors->first('part_number') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.kSevenSecurity.fields.product_number_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.kSevenSecurity.fields.part_number_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="description">{{ trans('cruds.kSevenSecurity.fields.description') }}</label>

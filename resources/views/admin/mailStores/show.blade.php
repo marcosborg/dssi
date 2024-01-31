@@ -65,10 +65,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.mailStore.fields.sku') }}
+                            {{ trans('cruds.mailStore.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $mailStore->sku }}
+                            {{ $mailStore->part_number }}
                         </td>
                     </tr>
                     <tr>

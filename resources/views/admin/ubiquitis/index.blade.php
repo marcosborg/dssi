@@ -41,7 +41,7 @@
                         {{ trans('cruds.ubiquiti.fields.product_information') }}
                     </th>
                     <th>
-                        {{ trans('cruds.ubiquiti.fields.product_number') }}
+                        {{ trans('cruds.ubiquiti.fields.part_number') }}
                     </th>
                     <th>
                         {{ trans('cruds.ubiquiti.fields.partner_mt') }}
@@ -179,7 +179,7 @@
 { data: 'name', name: 'name' },
 { data: 'description', name: 'description' },
 { data: 'product_information', name: 'product_information' },
-{ data: 'product_number', name: 'product_number' },
+{ data: 'part_number', name: 'part_number' },
 { data: 'partner_mt', name: 'partner_mt' },
 { data: 'pvp_mt', name: 'pvp_mt' },
 { data: 'partner_kz', name: 'partner_kz' },

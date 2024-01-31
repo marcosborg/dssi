@@ -44,7 +44,7 @@
                         {{ trans('cruds.mailStore.fields.to') }}
                     </th>
                     <th>
-                        {{ trans('cruds.mailStore.fields.sku') }}
+                        {{ trans('cruds.mailStore.fields.part_number') }}
                     </th>
                     <th>
                         {{ trans('cruds.mailStore.fields.description') }}
@@ -182,7 +182,7 @@
 { data: 'term', name: 'term' },
 { data: 'from', name: 'from' },
 { data: 'to', name: 'to' },
-{ data: 'sku', name: 'sku' },
+{ data: 'part_number', name: 'part_number' },
 { data: 'description', name: 'description' },
 { data: 'partner_eur', name: 'partner_eur' },
 { data: 'pvp_eur', name: 'pvp_eur' },

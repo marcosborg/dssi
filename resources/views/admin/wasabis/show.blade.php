@@ -57,10 +57,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.wasabi.fields.product_number') }}
+                            {{ trans('cruds.wasabi.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $wasabi->product_number }}
+                            {{ $wasabi->part_number }}
                         </td>
                     </tr>
                     <tr>

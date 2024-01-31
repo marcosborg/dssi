@@ -63,8 +63,8 @@ class OwnCloudController extends Controller
             $table->editColumn('to', function ($row) {
                 return $row->to ? $row->to : '';
             });
-            $table->editColumn('product_number', function ($row) {
-                return $row->product_number ? $row->product_number : '';
+            $table->editColumn('part_number', function ($row) {
+                return $row->part_number ? $row->part_number : '';
             });
             $table->editColumn('description', function ($row) {
                 return $row->description ? $row->description : '';

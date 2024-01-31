@@ -25,7 +25,7 @@ class OwnCloud extends Model
         'term',
         'from',
         'to',
-        'product_number',
+        'part_number',
         'description',
         'partner_eur',
         'pvp_eur',

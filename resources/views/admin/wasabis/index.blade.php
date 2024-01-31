@@ -41,7 +41,7 @@
                         {{ trans('cruds.wasabi.fields.term') }}
                     </th>
                     <th>
-                        {{ trans('cruds.wasabi.fields.product_number') }}
+                        {{ trans('cruds.wasabi.fields.part_number') }}
                     </th>
                     <th>
                         {{ trans('cruds.wasabi.fields.description') }}
@@ -175,7 +175,7 @@
 { data: 'name', name: 'name' },
 { data: 'tb', name: 'tb' },
 { data: 'term', name: 'term' },
-{ data: 'product_number', name: 'product_number' },
+{ data: 'part_number', name: 'part_number' },
 { data: 'description', name: 'description' },
 { data: 'partner_eur', name: 'partner_eur' },
 { data: 'pvp_eur', name: 'pvp_eur' },

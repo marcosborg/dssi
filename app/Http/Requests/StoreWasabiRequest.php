@@ -37,7 +37,7 @@ class StoreWasabiRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'product_number' => [
+            'part_number' => [
                 'string',
                 'nullable',
             ],

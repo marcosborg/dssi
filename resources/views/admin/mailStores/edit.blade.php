@@ -65,14 +65,14 @@
                 <span class="help-block">{{ trans('cruds.mailStore.fields.to_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="sku">{{ trans('cruds.mailStore.fields.sku') }}</label>
-                <input class="form-control {{ $errors->has('sku') ? 'is-invalid' : '' }}" type="text" name="sku" id="sku" value="{{ old('sku', $mailStore->sku) }}">
-                @if($errors->has('sku'))
+                <label for="part_number">{{ trans('cruds.mailStore.fields.part_number') }}</label>
+                <input class="form-control {{ $errors->has('part_number') ? 'is-invalid' : '' }}" type="text" name="part_number" id="part_number" value="{{ old('part_number', $mailStore->part_number) }}">
+                @if($errors->has('part_number'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('sku') }}
+                        {{ $errors->first('part_number') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.mailStore.fields.sku_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.mailStore.fields.part_number_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="description">{{ trans('cruds.mailStore.fields.description') }}</label>

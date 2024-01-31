@@ -24,7 +24,7 @@ class Wasabi extends Model
         'name',
         'tb',
         'term',
-        'product_number',
+        'part_number',
         'description',
         'partner_eur',
         'pvp_eur',

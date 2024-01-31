@@ -44,7 +44,7 @@
                         {{ trans('cruds.crashPlan.fields.term') }}
                     </th>
                     <th>
-                        {{ trans('cruds.crashPlan.fields.product_number') }}
+                        {{ trans('cruds.crashPlan.fields.part_number') }}
                     </th>
                     <th>
                         {{ trans('cruds.crashPlan.fields.description') }}
@@ -182,7 +182,7 @@
 { data: 'from', name: 'from' },
 { data: 'to', name: 'to' },
 { data: 'term', name: 'term' },
-{ data: 'product_number', name: 'product_number' },
+{ data: 'part_number', name: 'part_number' },
 { data: 'description', name: 'description' },
 { data: 'partner_eur', name: 'partner_eur' },
 { data: 'pvp_eur', name: 'pvp_eur' },

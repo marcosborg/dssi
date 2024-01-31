@@ -57,10 +57,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.ubiquiti.fields.product_number') }}
+                            {{ trans('cruds.ubiquiti.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $ubiquiti->product_number }}
+                            {{ $ubiquiti->part_number }}
                         </td>
                     </tr>
                     <tr>

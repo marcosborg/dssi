@@ -65,10 +65,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.titanHq.fields.product_number') }}
+                            {{ trans('cruds.titanHq.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $titanHq->product_number }}
+                            {{ $titanHq->part_number }}
                         </td>
                     </tr>
                     <tr>

@@ -25,7 +25,7 @@ class MailStore extends Model
         'term',
         'from',
         'to',
-        'sku',
+        'part_number',
         'description',
         'partner_eur',
         'pvp_eur',

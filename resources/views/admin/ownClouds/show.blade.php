@@ -65,10 +65,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.ownCloud.fields.product_number') }}
+                            {{ trans('cruds.ownCloud.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $ownCloud->product_number }}
+                            {{ $ownCloud->part_number }}
                         </td>
                     </tr>
                     <tr>

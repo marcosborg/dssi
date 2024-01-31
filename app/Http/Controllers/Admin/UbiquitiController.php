@@ -24,7 +24,7 @@ class UbiquitiController extends Controller
         abort_if(Gate::denies('ubiquiti_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Ubiquiti::with(['stock_mz', 'stock_ao', 'product'])->select(sprintf('%s.*', (new Ubiquiti)->table));
+            $query = Ubiquiti::with(['product', 'stock_mz', 'stock_ao'])->select(sprintf('%s.*', (new Ubiquiti)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -48,6 +48,10 @@ class UbiquitiController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
+            $table->addColumn('product_name', function ($row) {
+                return $row->product ? $row->product->name : '';
+            });
+
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
@@ -57,8 +61,8 @@ class UbiquitiController extends Controller
             $table->editColumn('product_information', function ($row) {
                 return $row->product_information ? $row->product_information : '';
             });
-            $table->editColumn('product_number', function ($row) {
-                return $row->product_number ? $row->product_number : '';
+            $table->editColumn('part_number', function ($row) {
+                return $row->part_number ? $row->part_number : '';
             });
             $table->editColumn('partner_mt', function ($row) {
                 return $row->partner_mt ? $row->partner_mt : '';
@@ -80,30 +84,26 @@ class UbiquitiController extends Controller
                 return $row->stock_ao ? $row->stock_ao->name : '';
             });
 
-            $table->addColumn('product_name', function ($row) {
-                return $row->product ? $row->product->name : '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'stock_mz', 'stock_ao', 'product']);
+            $table->rawColumns(['actions', 'placeholder', 'product', 'stock_mz', 'stock_ao']);
 
             return $table->make(true);
         }
 
-        $stocks   = Stock::get();
         $products = Product::get();
+        $stocks   = Stock::get();
 
-        return view('admin.ubiquitis.index', compact('stocks', 'products'));
+        return view('admin.ubiquitis.index', compact('products', 'stocks'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('ubiquiti_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $stock_mzs = Stock::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stock_aos = Stock::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         return view('admin.ubiquitis.create', compact('products', 'stock_aos', 'stock_mzs'));
     }
@@ -119,13 +119,13 @@ class UbiquitiController extends Controller
     {
         abort_if(Gate::denies('ubiquiti_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
         $stock_mzs = Stock::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $stock_aos = Stock::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $products = Product::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $ubiquiti->load('stock_mz', 'stock_ao', 'product');
+        $ubiquiti->load('product', 'stock_mz', 'stock_ao');
 
         return view('admin.ubiquitis.edit', compact('products', 'stock_aos', 'stock_mzs', 'ubiquiti'));
     }
@@ -141,7 +141,7 @@ class UbiquitiController extends Controller
     {
         abort_if(Gate::denies('ubiquiti_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $ubiquiti->load('stock_mz', 'stock_ao', 'product');
+        $ubiquiti->load('product', 'stock_mz', 'stock_ao');
 
         return view('admin.ubiquitis.show', compact('ubiquiti'));
     }

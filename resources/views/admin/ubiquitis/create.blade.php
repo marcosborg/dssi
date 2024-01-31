@@ -54,14 +54,14 @@
                 <span class="help-block">{{ trans('cruds.ubiquiti.fields.product_information_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="product_number">{{ trans('cruds.ubiquiti.fields.product_number') }}</label>
-                <input class="form-control {{ $errors->has('product_number') ? 'is-invalid' : '' }}" type="text" name="product_number" id="product_number" value="{{ old('product_number', '') }}">
-                @if($errors->has('product_number'))
+                <label for="part_number">{{ trans('cruds.ubiquiti.fields.part_number') }}</label>
+                <input class="form-control {{ $errors->has('part_number') ? 'is-invalid' : '' }}" type="text" name="part_number" id="part_number" value="{{ old('part_number', '') }}">
+                @if($errors->has('part_number'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('product_number') }}
+                        {{ $errors->first('part_number') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.ubiquiti.fields.product_number_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.ubiquiti.fields.part_number_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="partner_mt">{{ trans('cruds.ubiquiti.fields.partner_mt') }}</label>

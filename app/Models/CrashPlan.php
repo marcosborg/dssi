@@ -25,7 +25,7 @@ class CrashPlan extends Model
         'from',
         'to',
         'term',
-        'product_number',
+        'part_number',
         'description',
         'partner_eur',
         'pvp_eur',

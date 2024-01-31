@@ -43,7 +43,7 @@ class UpdateMailStoreRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'sku' => [
+            'part_number' => [
                 'string',
                 'nullable',
             ],

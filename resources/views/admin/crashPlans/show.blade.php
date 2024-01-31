@@ -65,10 +65,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.crashPlan.fields.product_number') }}
+                            {{ trans('cruds.crashPlan.fields.part_number') }}
                         </th>
                         <td>
-                            {{ $crashPlan->product_number }}
+                            {{ $crashPlan->part_number }}
                         </td>
                     </tr>
                     <tr>

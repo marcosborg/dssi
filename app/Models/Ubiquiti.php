@@ -20,17 +20,17 @@ class Ubiquiti extends Model
     ];
 
     protected $fillable = [
+        'product_id',
         'name',
         'description',
         'product_information',
-        'product_number',
+        'part_number',
         'partner_mt',
         'pvp_mt',
         'partner_kz',
         'pvp_kz',
         'stock_mz_id',
         'stock_ao_id',
-        'product_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -41,6 +41,11 @@ class Ubiquiti extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
     public function stock_mz()
     {
         return $this->belongsTo(Stock::class, 'stock_mz_id');
@@ -49,10 +54,5 @@ class Ubiquiti extends Model
     public function stock_ao()
     {
         return $this->belongsTo(Stock::class, 'stock_ao_id');
-    }
-
-    public function product()
-    {
-        return $this->belongsTo(Product::class, 'product_id');
     }
 }

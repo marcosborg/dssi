@@ -63,8 +63,8 @@ class MailStoreController extends Controller
             $table->editColumn('to', function ($row) {
                 return $row->to ? $row->to : '';
             });
-            $table->editColumn('sku', function ($row) {
-                return $row->sku ? $row->sku : '';
+            $table->editColumn('part_number', function ($row) {
+                return $row->part_number ? $row->part_number : '';
             });
             $table->editColumn('description', function ($row) {
                 return $row->description ? $row->description : '';
