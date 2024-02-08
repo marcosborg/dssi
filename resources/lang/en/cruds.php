@@ -449,6 +449,8 @@ return [
             'question_5_pt_helper' => ' ',
             'question_5_en'        => 'Question 5 En',
             'question_5_en_helper' => ' ',
+            'image'                => 'Image',
+            'image_helper'         => ' ',
         ],
     ],
 

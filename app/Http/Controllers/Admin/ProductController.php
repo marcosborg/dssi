@@ -61,6 +61,17 @@ class ProductController extends Controller
                 return $row->solution ? $row->solution->name : '';
             });
 
+            $table->editColumn('image', function ($row) {
+                if ($photo = $row->image) {
+                    return sprintf(
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
+                }
+
+                return '';
+            });
             $table->editColumn('link', function ($row) {
                 return $row->link ? $row->link : '';
             });
@@ -109,7 +120,7 @@ class ProductController extends Controller
                 return implode(', ', $links);
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'manufacturer', 'solution', 'files']);
+            $table->rawColumns(['actions', 'placeholder', 'manufacturer', 'solution', 'image', 'files']);
 
             return $table->make(true);
         }
@@ -134,6 +145,10 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->all());
+
+        if ($request->input('image', false)) {
+            $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+        }
 
         foreach ($request->input('files', []) as $file) {
             $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('files');
@@ -162,6 +177,17 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         $product->update($request->all());
+
+        if ($request->input('image', false)) {
+            if (! $product->image || $request->input('image') !== $product->image->file_name) {
+                if ($product->image) {
+                    $product->image->delete();
+                }
+                $product->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+            }
+        } elseif ($product->image) {
+            $product->image->delete();
+        }
 
         if (count($product->files) > 0) {
             foreach ($product->files as $media) {

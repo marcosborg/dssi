@@ -17,6 +17,7 @@ class Product extends Model implements HasMedia
     public $table = 'products';
 
     protected $appends = [
+        'image',
         'files',
     ];
 
@@ -66,6 +67,18 @@ class Product extends Model implements HasMedia
     public function solution()
     {
         return $this->belongsTo(Solution::class, 'solution_id');
+    }
+
+    public function getImageAttribute()
+    {
+        $file = $this->getMedia('image')->last();
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 
     public function getFilesAttribute()

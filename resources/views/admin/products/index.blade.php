@@ -38,6 +38,9 @@
                         {{ trans('cruds.product.fields.solution') }}
                     </th>
                     <th>
+                        {{ trans('cruds.product.fields.image') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.product.fields.link') }}
                     </th>
                     <th>
@@ -104,6 +107,8 @@
                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                             @endforeach
                         </select>
+                    </td>
+                    <td>
                     </td>
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -202,6 +207,7 @@
 { data: 'name', name: 'name' },
 { data: 'manufacturer_name', name: 'manufacturer.name' },
 { data: 'solution_name', name: 'solution.name' },
+{ data: 'image', name: 'image', sortable: false, searchable: false },
 { data: 'link', name: 'link' },
 { data: 'questions', name: 'questions' },
 { data: 'question_1_pt', name: 'question_1_pt' },

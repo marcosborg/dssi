@@ -49,6 +49,18 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.product.fields.image') }}
+                        </th>
+                        <td>
+                            @if($product->image)
+                                <a href="{{ $product->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $product->image->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.product.fields.link') }}
                         </th>
                         <td>
