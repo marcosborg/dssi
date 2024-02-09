@@ -65,4 +65,9 @@ class Manufacturer extends Model implements HasMedia
     {
         return $this->getMedia('files');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

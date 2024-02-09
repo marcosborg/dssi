@@ -18,7 +18,7 @@ class ManufacturerApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('manufacturer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('manufacturer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new ManufacturerResource(Manufacturer::all());
     }
@@ -42,9 +42,9 @@ class ManufacturerApiController extends Controller
 
     public function show(Manufacturer $manufacturer)
     {
-        abort_if(Gate::denies('manufacturer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('manufacturer_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ManufacturerResource($manufacturer);
+        return new ManufacturerResource($manufacturer->load('products'));
     }
 
     public function update(UpdateManufacturerRequest $request, Manufacturer $manufacturer)

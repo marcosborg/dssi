@@ -48,11 +48,16 @@ class Solution extends Model implements HasMedia
     {
         $file = $this->getMedia('image')->last();
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

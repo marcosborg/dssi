@@ -18,7 +18,7 @@ class SolutionApiController extends Controller
 
     public function index()
     {
-        abort_if(Gate::denies('solution_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('solution_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return new SolutionResource(Solution::all());
     }
@@ -38,9 +38,9 @@ class SolutionApiController extends Controller
 
     public function show(Solution $solution)
     {
-        abort_if(Gate::denies('solution_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('solution_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SolutionResource($solution);
+        return new SolutionResource($solution->load('products'));
     }
 
     public function update(UpdateSolutionRequest $request, Solution $solution)
@@ -71,4 +71,5 @@ class SolutionApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+    
 }

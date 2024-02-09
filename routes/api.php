@@ -1,5 +1,9 @@
 <?php
 
+Route::apiResource('solutions', 'Api\V1\Admin\SolutionApiController');
+Route::apiResource('products', 'Api\V1\Admin\ProductApiController');
+Route::apiResource('manufacturers', 'Api\V1\Admin\ManufacturerApiController');
+
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users
     Route::apiResource('users', 'UsersApiController');
