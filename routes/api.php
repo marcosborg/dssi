@@ -2,8 +2,10 @@
 
 Route::apiResource('solutions', 'Api\V1\Admin\SolutionApiController');
 Route::apiResource('products', 'Api\V1\Admin\ProductApiController');
+Route::get('product/{product_id}', 'Api\V1\Admin\ProductApiController@product');
 Route::apiResource('manufacturers', 'Api\V1\Admin\ManufacturerApiController');
-Route::post('wasabi_options', 'Api\V1\Admin\ProductApiController@wasabiOptions');
+Route::post('filter', 'Api\V1\Admin\ProductApiController@filter');
+Route::post('search', 'Api\V1\Admin\ProductApiController@search');
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users
