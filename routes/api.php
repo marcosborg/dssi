@@ -3,6 +3,7 @@
 Route::apiResource('solutions', 'Api\V1\Admin\SolutionApiController');
 Route::apiResource('products', 'Api\V1\Admin\ProductApiController');
 Route::apiResource('manufacturers', 'Api\V1\Admin\ManufacturerApiController');
+Route::post('wasabi_options', 'Api\V1\Admin\ProductApiController@wasabiOptions');
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users

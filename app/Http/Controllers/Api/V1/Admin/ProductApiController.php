@@ -11,6 +11,7 @@ use App\Models\Product;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Wasabi;
 
 class ProductApiController extends Controller
 {
@@ -40,7 +41,10 @@ class ProductApiController extends Controller
     {
         //abort_if(Gate::denies('product_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ProductResource($product->load(['manufacturer', 'solution']));
+        $product = new ProductResource($product->load(['manufacturer', 'solution']));
+
+        return $product;
+
     }
 
     public function update(UpdateProductRequest $request, Product $product)
@@ -49,14 +53,14 @@ class ProductApiController extends Controller
 
         if (count($product->files) > 0) {
             foreach ($product->files as $media) {
-                if (! in_array($media->file_name, $request->input('files', []))) {
+                if (!in_array($media->file_name, $request->input('files', []))) {
                     $media->delete();
                 }
             }
         }
         $media = $product->files->pluck('file_name')->toArray();
         foreach ($request->input('files', []) as $file) {
-            if (count($media) === 0 || ! in_array($file, $media)) {
+            if (count($media) === 0 || !in_array($file, $media)) {
                 $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('files');
             }
         }
@@ -73,5 +77,19 @@ class ProductApiController extends Controller
         $product->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function wasabiOptions(Request $request)
+    {
+        $name_options = Wasabi::where('product_id', $request->product_id)->get()->unique('name')->values();
+        $question_1_options = Wasabi::where([
+            'product_id' => $request->product_id,
+            'name' => $request->product_name
+        ])->get()->unique('tb')->values();
+
+        return [
+            'name_options' => $name_options,
+            'question_1_options' => $question_1_options
+        ];
     }
 }
