@@ -98,6 +98,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('products/parse-csv-import', 'ProductController@parseCsvImport')->name('products.parseCsvImport');
     Route::post('products/process-csv-import', 'ProductController@processCsvImport')->name('products.processCsvImport');
     Route::resource('products', 'ProductController');
+
+    // Company
+    Route::delete('companies/destroy', 'CompanyController@massDestroy')->name('companies.massDestroy');
+    Route::post('companies/parse-csv-import', 'CompanyController@parseCsvImport')->name('companies.parseCsvImport');
+    Route::post('companies/process-csv-import', 'CompanyController@processCsvImport')->name('companies.processCsvImport');
+    Route::resource('companies', 'CompanyController');
+
+    // Country
+    Route::delete('countries/destroy', 'CountryController@massDestroy')->name('countries.massDestroy');
+    Route::post('countries/parse-csv-import', 'CountryController@parseCsvImport')->name('countries.parseCsvImport');
+    Route::post('countries/process-csv-import', 'CountryController@processCsvImport')->name('countries.processCsvImport');
+    Route::resource('countries', 'CountryController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

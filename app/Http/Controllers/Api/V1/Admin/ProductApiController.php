@@ -110,10 +110,10 @@ class ProductApiController extends Controller
             case 4:
                 $k_seven_securities = KSevenSecurity::where('product_id', $product_id)->get();
                 $product->questions = [
-                    'question_1' => $k_seven_securities->unique('term')->map(function ($term) {
+                    'question_1' => 'number',
+                    'question_2' => $k_seven_securities->unique('term')->map(function ($term) {
                         return collect($term->term)->values()->all();
                     })->values()->all(),
-                    'question_2' => 'number',
                 ];
                 break;
             case 5:
@@ -130,10 +130,10 @@ class ProductApiController extends Controller
             case 8:
                 $mail_stores = MailStore::where('product_id', $product_id)->get();
                 $product->questions = [
-                    'question_1' => $mail_stores->unique('term')->map(function ($term) {
+                    'question_1' => 'number',
+                    'question_2' => $mail_stores->unique('term')->map(function ($term) {
                         return collect($term->term)->values()->all();
                     })->values()->all(),
-                    'question_2' => 'number',
                 ];
                 break;
             case 9:
@@ -181,7 +181,11 @@ class ProductApiController extends Controller
                 $questions = $crash_plans;
                 break;
             case 4:
-                $questions = [];
+                $k_seven_securities = KSevenSecurity::where([
+                    'product_id' => $request->product_id,
+                ])->get()->unique('term')->map(function ($product) {
+                    return $product->term;
+                });
                 break;
             case 5:
                 $wasabis = Wasabi::where([
@@ -193,19 +197,24 @@ class ProductApiController extends Controller
                 $questions = $wasabis;
                 break;
             case 8:
-                $questions = [];
+                $mail_stores = MailStore::where('from', '>=', $request->option1)
+                    ->where('to', '<=', $request->option1)
+                    ->get()->unique('term')->map(function ($product) {
+                        return $product->term;
+                    });
+                $questions = $mail_stores;
                 break;
             case 9:
                 $ubiquitis = Ubiquiti::where([
                     'product_id' => $request->product_id,
                     'name' => $request->option1
                 ])->get()->unique('description')->map(function ($product) {
-                    return $product->product_information;
+                    return $product->description;
                 });
                 $questions = $ubiquitis;
                 break;
             case 10:
-
+                $questions = [];
                 break;
             default:
 
@@ -234,9 +243,9 @@ class ProductApiController extends Controller
                 break;
             case 4:
                 $k_seven_securities = KSevenSecurity::where('product_id', $request->product_id)
-                    ->where('term', $request->option1)
-                    ->where('from', '>=', $request->option2)
-                    ->where('to', '<=', $request->option2)
+                    ->where('term', $request->option2)
+                    ->where('from', '>=', $request->option1)
+                    ->where('to', '<=', $request->option1)
                     ->first();
                 $result = $k_seven_securities;
                 break;
@@ -250,9 +259,9 @@ class ProductApiController extends Controller
                 break;
             case 8:
                 $mail_stores = MailStore::where('product_id', $request->product_id)
-                    ->where('term', $request->option1)
-                    ->where('from', '>=', $request->option2)
-                    ->where('to', '<=', $request->option2)
+                    ->where('term', $request->option2)
+                    ->where('from', '>=', $request->option1)
+                    ->where('to', '<=', $request->option1)
                     ->first();
                 $result = $mail_stores;
                 break;
@@ -264,7 +273,12 @@ class ProductApiController extends Controller
                 $result = $ubiquitis;
                 break;
             case 10:
-
+                $own_clouds = OwnCloud::where('product_id', $request->product_id)
+                    ->where('term', $request->option1)
+                    ->where('from', '>=', $request->option2)
+                    ->where('to', '<=', $request->option2)
+                    ->first();
+                $result = $own_clouds;
                 break;
             default:
 
