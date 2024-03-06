@@ -6,6 +6,9 @@ Route::get('product/{product_id}', 'Api\V1\Admin\ProductApiController@product');
 Route::apiResource('manufacturers', 'Api\V1\Admin\ManufacturerApiController');
 Route::post('filter', 'Api\V1\Admin\ProductApiController@filter');
 Route::post('search', 'Api\V1\Admin\ProductApiController@search');
+Route::apiResource('countries', 'Api\V1\Admin\CountryApiController');
+
+Route::post('register', 'Api\AuthController@register');
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users

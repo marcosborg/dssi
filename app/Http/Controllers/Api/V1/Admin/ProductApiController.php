@@ -197,8 +197,8 @@ class ProductApiController extends Controller
                 $questions = $wasabis;
                 break;
             case 8:
-                $mail_stores = MailStore::where('from', '>=', $request->option1)
-                    ->where('to', '<=', $request->option1)
+                $mail_stores = MailStore::where('from', '<=', $request->option1)
+                    ->where('to', '>=', $request->option1)
                     ->get()->unique('term')->map(function ($product) {
                         return $product->term;
                     });
@@ -235,18 +235,24 @@ class ProductApiController extends Controller
                 break;
             case 3:
                 $crash_plans = CrashPlan::where('product_id', $request->product_id)
-                    ->where('from', '>=', $request->option1)
-                    ->where('to', '<=', $request->option1)
+                    ->where('from', '<=', $request->option1)
+                    ->where('to', '>=', $request->option1)
                     ->where('term', $request->option2)
                     ->first();
+                if (!$crash_plans) {
+                    $crash_plans = CrashPlan::orderBy('id', 'desc')->first();
+                }
                 $result = $crash_plans;
                 break;
             case 4:
                 $k_seven_securities = KSevenSecurity::where('product_id', $request->product_id)
                     ->where('term', $request->option2)
-                    ->where('from', '>=', $request->option1)
-                    ->where('to', '<=', $request->option1)
+                    ->where('from', '<=', $request->option1)
+                    ->where('to', '>=', $request->option1)
                     ->first();
+                if (!$k_seven_securities) {
+                    $k_seven_securities = KSevenSecurity::orderBy('id', 'desc')->first();
+                }
                 $result = $k_seven_securities;
                 break;
             case 5:
@@ -260,9 +266,12 @@ class ProductApiController extends Controller
             case 8:
                 $mail_stores = MailStore::where('product_id', $request->product_id)
                     ->where('term', $request->option2)
-                    ->where('from', '>=', $request->option1)
-                    ->where('to', '<=', $request->option1)
+                    ->where('from', '<=', $request->option1)
+                    ->where('to', '>=', $request->option1)
                     ->first();
+                if (!$mail_stores) {
+                    $mail_stores = MailStore::orderBy('id', 'desc')->first();
+                }
                 $result = $mail_stores;
                 break;
             case 9:
@@ -275,9 +284,12 @@ class ProductApiController extends Controller
             case 10:
                 $own_clouds = OwnCloud::where('product_id', $request->product_id)
                     ->where('term', $request->option1)
-                    ->where('from', '>=', $request->option2)
-                    ->where('to', '<=', $request->option2)
+                    ->where('from', '<=', $request->option2)
+                    ->where('to', '>=', $request->option2)
                     ->first();
+                if (!$own_clouds) {
+                    $own_clouds = OwnCloud::orderBy('id', 'desc')->first();
+                }
                 $result = $own_clouds;
                 break;
             default:
