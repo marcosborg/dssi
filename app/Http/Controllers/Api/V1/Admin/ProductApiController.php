@@ -240,7 +240,7 @@ class ProductApiController extends Controller
                     ->where('term', $request->option2)
                     ->first();
                 if (!$crash_plans) {
-                    $crash_plans = CrashPlan::orderBy('id', 'desc')->first();
+                    $crash_plans = CrashPlan::where('term', $request->option2)->orderBy('id', 'desc')->first();
                 }
                 $result = $crash_plans;
                 break;
@@ -251,7 +251,7 @@ class ProductApiController extends Controller
                     ->where('to', '>=', $request->option1)
                     ->first();
                 if (!$k_seven_securities) {
-                    $k_seven_securities = KSevenSecurity::orderBy('id', 'desc')->first();
+                    $k_seven_securities = KSevenSecurity::where('term', $request->option2)->orderBy('id', 'desc')->first();
                 }
                 $result = $k_seven_securities;
                 break;
@@ -265,7 +265,7 @@ class ProductApiController extends Controller
                 break;
             case 8:
                 if ($request->option1 < 5) {
-                    $mail_stores = MailStore::first();
+                    $mail_stores = MailStore::where('term', $request->option2)->first();
                 } else {
                     $mail_stores = MailStore::where('product_id', $request->product_id)
                         ->where('term', $request->option2)
@@ -273,7 +273,7 @@ class ProductApiController extends Controller
                         ->where('to', '>=', $request->option1)
                         ->first();
                     if (!$mail_stores) {
-                        $mail_stores = MailStore::orderBy('id', 'desc')->first();
+                        $mail_stores = MailStore::where('term', $request->option2)->orderBy('id', 'desc')->first();
                     }
                 }
                 $result = $mail_stores;
@@ -287,7 +287,7 @@ class ProductApiController extends Controller
                 break;
             case 10:
                 if ($request->option2 < 25) {
-                    $own_clouds = OwnCloud::first();
+                    $own_clouds = OwnCloud::where('term', $request->option1)->first();
                 } else {
                     $own_clouds = OwnCloud::where('product_id', $request->product_id)
                         ->where('term', $request->option1)
@@ -295,7 +295,7 @@ class ProductApiController extends Controller
                         ->where('to', '>=', $request->option2)
                         ->first();
                     if (!$own_clouds) {
-                        $own_clouds = OwnCloud::orderBy('id', 'desc')->first();
+                        $own_clouds = OwnCloud::where('term', $request->option1)->orderBy('id', 'desc')->first();
                     }
                 }
                 $result = $own_clouds;
