@@ -264,13 +264,17 @@ class ProductApiController extends Controller
                 $result = $wasabis;
                 break;
             case 8:
-                $mail_stores = MailStore::where('product_id', $request->product_id)
-                    ->where('term', $request->option2)
-                    ->where('from', '<=', $request->option1)
-                    ->where('to', '>=', $request->option1)
-                    ->first();
-                if (!$mail_stores) {
-                    $mail_stores = MailStore::orderBy('id', 'desc')->first();
+                if ($request->option1 < 5) {
+                    $mail_stores = MailStore::first();
+                } else {
+                    $mail_stores = MailStore::where('product_id', $request->product_id)
+                        ->where('term', $request->option2)
+                        ->where('from', '<=', $request->option1)
+                        ->where('to', '>=', $request->option1)
+                        ->first();
+                    if (!$mail_stores) {
+                        $mail_stores = MailStore::orderBy('id', 'desc')->first();
+                    }
                 }
                 $result = $mail_stores;
                 break;
@@ -282,13 +286,17 @@ class ProductApiController extends Controller
                 $result = $ubiquitis;
                 break;
             case 10:
-                $own_clouds = OwnCloud::where('product_id', $request->product_id)
-                    ->where('term', $request->option1)
-                    ->where('from', '<=', $request->option2)
-                    ->where('to', '>=', $request->option2)
-                    ->first();
-                if (!$own_clouds) {
-                    $own_clouds = OwnCloud::orderBy('id', 'desc')->first();
+                if ($request->option2 < 25) {
+                    $own_clouds = OwnCloud::first();
+                } else {
+                    $own_clouds = OwnCloud::where('product_id', $request->product_id)
+                        ->where('term', $request->option1)
+                        ->where('from', '<=', $request->option2)
+                        ->where('to', '>=', $request->option2)
+                        ->first();
+                    if (!$own_clouds) {
+                        $own_clouds = OwnCloud::orderBy('id', 'desc')->first();
+                    }
                 }
                 $result = $own_clouds;
                 break;

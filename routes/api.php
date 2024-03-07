@@ -9,6 +9,7 @@ Route::post('search', 'Api\V1\Admin\ProductApiController@search');
 Route::apiResource('countries', 'Api\V1\Admin\CountryApiController');
 
 Route::post('register', 'Api\AuthController@register');
+Route::post('login', 'Api\AuthController@login');
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users

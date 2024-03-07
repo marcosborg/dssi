@@ -20,8 +20,9 @@ class Company extends Model
     ];
 
     public const TYPE_RADIO = [
-        'user'    => 'User',
-        'partner' => 'Partner',
+        'user'     => 'User',
+        'partner'  => 'Partner',
+        'end_user' => 'End user',
     ];
 
     protected $fillable = [
