@@ -88,4 +88,10 @@ class AuthController extends Controller
             'access_token' => $authToken,
         ]);
     }
+
+    public function user(Request $request)
+    {
+        $user = $request->user()->load('company');
+        return $user;
+    }
 }

@@ -10,6 +10,7 @@ Route::apiResource('countries', 'Api\V1\Admin\CountryApiController');
 
 Route::post('register', 'Api\AuthController@register');
 Route::post('login', 'Api\AuthController@login');
+Route::middleware('auth:sanctum')->get('user', 'Api\AuthController@user');
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:sanctum']], function () {
     // Users
