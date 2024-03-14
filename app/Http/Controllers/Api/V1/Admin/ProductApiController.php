@@ -282,7 +282,11 @@ class ProductApiController extends Controller
                 $ubiquitis = Ubiquiti::where('product_id', $request->product_id)
                     ->where('name', $request->option1)
                     ->where('description', $request->option2)
-                    ->first();
+                    ->first()
+                    ->load([
+                        'stock_mz',
+                        'stock_ao'
+                    ]);
                 $result = $ubiquitis;
                 break;
             case 10:
