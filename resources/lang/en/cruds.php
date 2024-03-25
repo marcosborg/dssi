@@ -505,5 +505,25 @@ return [
             'deleted_at_helper' => ' ',
         ],
     ],
+    'chat' => [
+        'title'          => 'Chat',
+        'title_singular' => 'Chat',
+        'fields'         => [
+            'id'                => 'ID',
+            'id_helper'         => ' ',
+            'user'              => 'User',
+            'user_helper'       => ' ',
+            'origin'            => 'Origin',
+            'origin_helper'     => ' ',
+            'message'           => 'Message',
+            'message_helper'    => ' ',
+            'created_at'        => 'Created at',
+            'created_at_helper' => ' ',
+            'updated_at'        => 'Updated at',
+            'updated_at_helper' => ' ',
+            'deleted_at'        => 'Deleted at',
+            'deleted_at_helper' => ' ',
+        ],
+    ],
 
 ];

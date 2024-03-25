@@ -110,6 +110,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('countries/parse-csv-import', 'CountryController@parseCsvImport')->name('countries.parseCsvImport');
     Route::post('countries/process-csv-import', 'CountryController@processCsvImport')->name('countries.processCsvImport');
     Route::resource('countries', 'CountryController');
+
+    // Chat
+    Route::delete('chats/destroy', 'ChatController@massDestroy')->name('chats.massDestroy');
+    Route::post('chats/parse-csv-import', 'ChatController@parseCsvImport')->name('chats.parseCsvImport');
+    Route::post('chats/process-csv-import', 'ChatController@processCsvImport')->name('chats.processCsvImport');
+    Route::resource('chats', 'ChatController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
