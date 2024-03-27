@@ -11,6 +11,11 @@
         margin: 10px 0;
         padding: 10px;
     }
+
+    #inner-chat {
+        overflow-y: auto;
+        max-height: 40vh;
+    }
 </style>
 @endsection
 <div class="row">
@@ -46,13 +51,13 @@
             <div class="card-header">
                 {{ $chat->name }}
             </div>
-            <div class="card-body" style="height: 40vh" id="inner-chat"></div>
+            <div class="card-body" id="inner-chat"></div>
             <div class="card-footer">
                 <div class="form-group">
                     <label>Mensagem</label>
                     <textarea class="form-control" id="message"></textarea>
                 </div>
-                <button class="btn btn-success btn-lg btn-block" sendMessage()>Enviar</button>
+                <button class="btn btn-success btn-lg btn-block" onclick="sendMessage()">Enviar</button>
             </div>
         </div>
         @endif
@@ -72,12 +77,13 @@
     getChatMessages = () => {
         $.get('/admin/chats/ajax/{{ $chat->id }}').then((resp) => {
             $('#inner-chat').html(resp);
+            scrollToBottom();
         });
     }
     sendMessage = () => {
         let message = $('#message').val();
         if(message.length > 0) {
-                let data = {
+            let data = {
                 user_id: {{ $chat->id }},
                 message: message
             }
@@ -87,8 +93,16 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: data,
+                success: () => {
+                    $('#message').val('');
+                    getChatMessages();
+                }
             });
         }
+    }
+    scrollToBottom = () => {
+        let chatContainer = $('#inner-chat');
+        chatContainer.scrollTop(chatContainer.prop("scrollHeight"));
     }
 </script>
 @endif

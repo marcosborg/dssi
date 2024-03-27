@@ -10,18 +10,25 @@ use App\Models\Chat;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ChatApiController extends Controller
 {
     public function index()
     {
-        abort_if(Gate::denies('chat_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ChatResource(Chat::with(['user'])->get());
+        $user_id = Auth::id();
+
+        abort_if(!Auth::check(), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new ChatResource(Chat::with(['user'])->where('user_id', $user_id)->get());
     }
 
     public function store(StoreChatRequest $request)
     {
+
+        abort_if(!Auth::check(), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $chat = Chat::create($request->all());
 
         return (new ChatResource($chat))
