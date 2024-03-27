@@ -91,6 +91,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('wasabis/process-csv-import', 'WasabiController@processCsvImport')->name('wasabis.processCsvImport');
     Route::resource('wasabis', 'WasabiController');
 
+    // Nakivo
+    Route::delete('nakivos/destroy', 'NakivoController@massDestroy')->name('nakivos.massDestroy');
+    Route::post('nakivos/parse-csv-import', 'NakivoController@parseCsvImport')->name('nakivos.parseCsvImport');
+    Route::post('nakivos/process-csv-import', 'NakivoController@processCsvImport')->name('nakivos.processCsvImport');
+    Route::resource('nakivos', 'NakivoController');
+
     // Product
     Route::delete('products/destroy', 'ProductController@massDestroy')->name('products.massDestroy');
     Route::post('products/media', 'ProductController@storeMedia')->name('products.storeMedia');

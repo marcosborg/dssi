@@ -48,6 +48,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Wasabi
     Route::apiResource('wasabis', 'WasabiApiController');
 
+    // Nakivo
+    Route::apiResource('nakivos', 'NakivoApiController');
+
     // Product
     Route::post('products/media', 'ProductApiController@storeMedia')->name('products.storeMedia');
     Route::apiResource('products', 'ProductApiController');

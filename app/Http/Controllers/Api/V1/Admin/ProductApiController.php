@@ -17,6 +17,7 @@ use App\Models\KSevenSecurity;
 use App\Models\Wasabi;
 use App\Models\Ubiquiti;
 use App\Models\OwnCloud;
+use App\Models\Nakivo;
 
 class ProductApiController extends Controller
 {
@@ -37,7 +38,7 @@ class ProductApiController extends Controller
             $product->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('files');
         }
 
-        return(new ProductResource($product))
+        return (new ProductResource($product))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -70,7 +71,7 @@ class ProductApiController extends Controller
             }
         }
 
-        return(new ProductResource($product))
+        return (new ProductResource($product))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
@@ -216,8 +217,17 @@ class ProductApiController extends Controller
             case 10:
                 $questions = [];
                 break;
+            case 11:
+                $nakivos = Nakivo::where([
+                    'product_id' => $request->product_id,
+                    'option1' => $request->option1
+                ])->get()->unique('option2')->map(function ($product) {
+                    return $product->option1;
+                });
+                $questions = $nakivos;
+                break;
             default:
-
+                $questions = [];
                 break;
         }
 
@@ -303,6 +313,16 @@ class ProductApiController extends Controller
                     }
                 }
                 $result = $own_clouds;
+                break;
+            case 11:
+                $nakivos = Nakivo::where('product_id', $request->product_id)
+                    ->where('option1', $request->option1)
+                    ->where('option2', $request->option2)
+                    ->first();
+                if (!$nakivos) {
+                    $nakivos = Nakivo::where('option1', $request->option1)->orderBy('id', 'desc')->first();
+                }
+                $result = $nakivos;
                 break;
             default:
 

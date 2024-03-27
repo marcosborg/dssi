@@ -196,6 +196,16 @@
                             </a>
                         </li>
                     @endcan
+                    @can('nakivo_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.nakivos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/nakivos") || request()->is("admin/nakivos/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-circle c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.nakivo.title') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcan
