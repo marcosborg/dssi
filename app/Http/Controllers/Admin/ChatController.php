@@ -30,18 +30,21 @@ class ChatController extends Controller
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate      = 'chat_show';
-                $editGate      = 'chat_edit';
-                $deleteGate    = 'chat_delete';
+                $viewGate = 'chat_show';
+                $editGate = 'chat_edit';
+                $deleteGate = 'chat_delete';
                 $crudRoutePart = 'chats';
 
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
+                return view(
+                    'partials.datatablesActions',
+                    compact(
+                        'viewGate',
+                        'editGate',
+                        'deleteGate',
+                        'crudRoutePart',
+                        'row'
+                    )
+                );
             });
 
             $table->editColumn('id', function ($row) {
@@ -132,5 +135,42 @@ class ChatController extends Controller
         }
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function last($user_id = null)
+    {
+        $users = User::whereHas('chats')
+            ->with([
+                'chats' => function ($query) {
+                    $query->orderBy('created_at', 'desc');
+                }
+            ])
+            ->get()
+            ->sortByDesc(function ($user) {
+                return $user->chats->max('created_at');
+            });
+
+        if ($user_id) {
+            $chat = User::find($user_id)->load('chats');
+        } else {
+            $chat = null;
+        }
+
+        return view('admin.chats.last', compact('users', 'chat'));
+    }
+
+    public function ajax($user_id)
+    {
+        $chat = User::find($user_id)->load('chats');
+        return view('admin.chats.ajax', compact('chat'));
+    }
+
+    public function sendMessage(Request $request)
+    {
+        $chat = new Chat;
+        $chat->origin = 'chat';
+        $chat->user_id = $request->user_id;
+        $chat->message = $request->message;
+        $chat->save();
     }
 }

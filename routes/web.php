@@ -112,6 +112,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('countries', 'CountryController');
 
     // Chat
+    Route::get('chats/last/{user_id?}', 'ChatController@last');
+    Route::get('chats/ajax/{user_id}', 'ChatController@ajax');
+    Route::post('chats/send-message', 'ChatController@sendMessage');
     Route::delete('chats/destroy', 'ChatController@massDestroy')->name('chats.massDestroy');
     Route::post('chats/parse-csv-import', 'ChatController@parseCsvImport')->name('chats.parseCsvImport');
     Route::post('chats/process-csv-import', 'ChatController@processCsvImport')->name('chats.processCsvImport');
