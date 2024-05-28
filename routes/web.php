@@ -125,6 +125,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('chats/parse-csv-import', 'ChatController@parseCsvImport')->name('chats.parseCsvImport');
     Route::post('chats/process-csv-import', 'ChatController@processCsvImport')->name('chats.processCsvImport');
     Route::resource('chats', 'ChatController');
+
+    // Quote Requests
+    Route::delete('quote-requests/destroy', 'QuoteRequestsController@massDestroy')->name('quote-requests.massDestroy');
+    Route::post('quote-requests/media', 'QuoteRequestsController@storeMedia')->name('quote-requests.storeMedia');
+    Route::post('quote-requests/ckmedia', 'QuoteRequestsController@storeCKEditorImages')->name('quote-requests.storeCKEditorImages');
+    Route::resource('quote-requests', 'QuoteRequestsController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

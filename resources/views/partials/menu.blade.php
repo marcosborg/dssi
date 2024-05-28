@@ -219,6 +219,16 @@
                 </a>
             </li>
         @endcan
+        @can('quote_request_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.quote-requests.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/quote-requests") || request()->is("admin/quote-requests/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-clipboard-list c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.quoteRequest.title') }}
+                </a>
+            </li>
+        @endcan
         @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
             @can('profile_password_edit')
                 <li class="c-sidebar-nav-item">

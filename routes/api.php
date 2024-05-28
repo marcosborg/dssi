@@ -63,4 +63,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Chat
     Route::apiResource('chats', 'ChatApiController');
+
+    // Quote Requests
+    Route::post('quote-requests/media', 'QuoteRequestsApiController@storeMedia')->name('quote-requests.storeMedia');
+    Route::apiResource('quote-requests', 'QuoteRequestsApiController');
+    Route::post('send-quote-request', 'QuoteRequestsApiController@sendQuoteRequest');
 });
