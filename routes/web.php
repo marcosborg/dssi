@@ -131,6 +131,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('quote-requests/media', 'QuoteRequestsController@storeMedia')->name('quote-requests.storeMedia');
     Route::post('quote-requests/ckmedia', 'QuoteRequestsController@storeCKEditorImages')->name('quote-requests.storeCKEditorImages');
     Route::resource('quote-requests', 'QuoteRequestsController');
+
+    // Room Alert
+    Route::delete('room-alerts/destroy', 'RoomAlertController@massDestroy')->name('room-alerts.massDestroy');
+    Route::post('room-alerts/parse-csv-import', 'RoomAlertController@parseCsvImport')->name('room-alerts.parseCsvImport');
+    Route::post('room-alerts/process-csv-import', 'RoomAlertController@processCsvImport')->name('room-alerts.processCsvImport');
+    Route::resource('room-alerts', 'RoomAlertController');
+
+    // Solar Winds
+    Route::delete('solar-winds/destroy', 'SolarWindsController@massDestroy')->name('solar-winds.massDestroy');
+    Route::post('solar-winds/parse-csv-import', 'SolarWindsController@parseCsvImport')->name('solar-winds.parseCsvImport');
+    Route::post('solar-winds/process-csv-import', 'SolarWindsController@processCsvImport')->name('solar-winds.processCsvImport');
+    Route::resource('solar-winds', 'SolarWindsController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

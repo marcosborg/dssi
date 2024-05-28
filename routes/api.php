@@ -68,4 +68,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('quote-requests/media', 'QuoteRequestsApiController@storeMedia')->name('quote-requests.storeMedia');
     Route::apiResource('quote-requests', 'QuoteRequestsApiController');
     Route::post('send-quote-request', 'QuoteRequestsApiController@sendQuoteRequest');
+
+    // Room Alert
+    Route::apiResource('room-alerts', 'RoomAlertApiController');
+
+    // Solar Winds
+    Route::apiResource('solar-winds', 'SolarWindsApiController');
 });

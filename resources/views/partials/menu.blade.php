@@ -206,6 +206,26 @@
                             </a>
                         </li>
                     @endcan
+                    @can('room_alert_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.room-alerts.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/room-alerts") || request()->is("admin/room-alerts/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-circle c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.roomAlert.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('solar_wind_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.solar-winds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/solar-winds") || request()->is("admin/solar-winds/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-circle c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.solarWind.title') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcan
